@@ -726,6 +726,138 @@
   color: #4b5563;
 }
 
+.vitals-session-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(26, 26, 46, 0.04);
+}
+
+.vitals-session-panel > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.vitals-session-panel span,
+.vitals-session-timestamp {
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+.vitals-session-panel strong {
+  color: #1a1a2e;
+  overflow-wrap: anywhere;
+}
+
+.vitals-session-status.active {
+  color: #047857;
+}
+
+.vitals-session-status.completed {
+  color: #6b7280;
+}
+
+.vitals-session-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.vitals-session-card {
+  min-width: 0;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(26, 26, 46, 0.04);
+}
+
+.vitals-session-card h2 {
+  margin: 0 0 1rem;
+  color: #4b5563;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.vitals-session-value {
+  margin: 0;
+  color: #1a1a2e;
+  font-size: 1.8rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.vitals-session-value.ecg-value {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.vitals-session-waiting {
+  margin: 0;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.vitals-session-timestamp {
+  margin: 0.75rem 0 0;
+}
+
+.vitals-session-connection {
+  padding: 0.45rem 0.7rem;
+  border-radius: 999px;
+  background: #f3f4f6;
+  color: #4b5563;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.vitals-session-connection.live {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.vitals-session-connection.waiting-for-data {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.vitals-session-connection.offline {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.btn-danger {
+  padding: 0.7rem 1.1rem;
+  border: 0;
+  border-radius: 8px;
+  background: #b91c1c;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #991b1b;
+}
+
+.btn-danger:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.vitals-session-end {
+  margin-bottom: 1.25rem;
+}
+
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
   .vitals-main {
@@ -747,6 +879,10 @@
   }
 
   .vitals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vitals-session-grid {
     grid-template-columns: 1fr;
   }
 

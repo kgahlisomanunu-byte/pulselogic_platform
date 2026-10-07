@@ -81,7 +81,7 @@ function Dashboard() {
 
               <section className="dashboard-panel">
                 <h2>Active session</h2>
-                {activeSession ? (
+                {String(activeSession?.status || '').toLowerCase() === 'active' ? (
                   <dl className="realtime-details">
                     <div><dt>Session</dt><dd>{activeSession.sessionId || '—'}</dd></div>
                     <div><dt>Patient</dt><dd>{activeSession.patientId || '—'}</dd></div>

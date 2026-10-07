@@ -1,10 +1,13 @@
 // src/pages/patientrecords.jsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/common/Sidebar';
 import Header from '../components/common/Header';
+import { startPatientSession } from '../firebase';
 import './styles/patientrecords.css';
 
 function PatientRecords() {
+  const navigate = useNavigate();
   const [patients, setPatients] = useState([]);
   const [filteredPatients, setFilteredPatients] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,6 +30,8 @@ function PatientRecords() {
     radiology: []
   });
   const [historyLoading, setHistoryLoading] = useState(false);
+  const [startingSession, setStartingSession] = useState(false);
+  const [sessionError, setSessionError] = useState('');
   const [filters, setFilters] = useState({
     gender: '',
     province: '',
@@ -139,6 +144,7 @@ function PatientRecords() {
   const viewPatientDetails = async (patientId) => {
     try {
       const token = localStorage.getItem('token');
+      setSessionError('');
       
       const response = await fetch(`${API_URL}/patients/${patientId}`, {
         headers: {
@@ -159,6 +165,26 @@ function PatientRecords() {
     } catch (err) {
       console.error('View patient error:', err);
       setError('Error fetching patient details');
+    }
+  };
+
+  const handleStartSession = async () => {
+    if (!selectedPatient?.patient_id) {
+      setSessionError('Select a saved patient before starting a vitals session.');
+      return;
+    }
+
+    setStartingSession(true);
+    setSessionError('');
+    try {
+      const session = await startPatientSession(selectedPatient.patient_id);
+      setShowPatientModal(false);
+      navigate(`/vitals?patientId=${encodeURIComponent(session.patientId)}&sessionId=${encodeURIComponent(session.sessionId)}`);
+    } catch (sessionStartError) {
+      console.error('Start vitals session error:', sessionStartError);
+      setSessionError(sessionStartError.message || 'Unable to start the vitals session. Please try again.');
+    } finally {
+      setStartingSession(false);
     }
   };
 
@@ -824,6 +850,15 @@ function PatientRecords() {
             </div>
 
             <div className="modal-footer">
+              {sessionError && <p className="message error" role="alert">{sessionError}</p>}
+              <button
+                className="btn-primary"
+                onClick={handleStartSession}
+                disabled={startingSession}
+              >
+                <i className={`fas ${startingSession ? 'fa-spinner fa-spin' : 'fa-heartbeat'}`}></i>
+                {startingSession ? 'Starting…' : 'Start Session'}
+              </button>
               <button className="btn-secondary" onClick={() => setShowPatientModal(false)}>
                 Close
               </button>
