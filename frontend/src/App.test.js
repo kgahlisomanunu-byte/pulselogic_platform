@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('redirects unauthenticated users to staff sign in', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Staff sign in' })).toBeInTheDocument();
+  expect(screen.getByLabelText('Email Address')).toBeInTheDocument();
 });

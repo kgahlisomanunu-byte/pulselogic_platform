@@ -1,0 +1,152 @@
+.dashboard-header {
+  background: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-left h2 {
+  font-size: 1.3rem;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.role-badge {
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  background: #e8edf5;
+  color: #534AB7;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.header-center {
+  flex: 1;
+  max-width: 500px;
+  margin: 0 2rem;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  background: #f3f4f6;
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  transition: all 0.3s;
+}
+
+.search-form:focus-within {
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(83, 74, 183, 0.1);
+}
+
+.search-form i {
+  color: #9ca3af;
+  margin-right: 0.5rem;
+}
+
+.search-form input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+  width: 100%;
+  color: #1a1a2e;
+}
+
+.search-form input::placeholder {
+  color: #9ca3af;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover {
+  background: #f3f4f6;
+  color: #1a1a2e;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid #e5e7eb;
+}
+
+.user-profile .avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #534AB7, #7C3AED);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.user-profile .name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.user-profile .role {
+  font-size: 0.7rem;
+  color: #6b7280;
+  text-transform: capitalize;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 0.8rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .header-center {
+    order: 3;
+    flex: 1 1 100%;
+    margin: 0;
+  }
+
+  .user-profile .user-details {
+    display: none;
+  }
+
+  .header-left h2 {
+    font-size: 1rem;
+  }
+}
